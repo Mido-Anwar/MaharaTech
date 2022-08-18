@@ -33,22 +33,12 @@ if (isset($_POST['Register'])) {
         $email = mysqli_escape_string($conn, $_POST['useremail']);
         $password = sha1($_POST['userpassword']);
         //upload image
-        $avatar = $_FILES['useravatar'];
-        $avatarName = $_FILES['useravatar']['name'];
-        $fileext = explode('.', $avatarName);
-        $fileactualext = strtolower(end($fileext));
-        $allowed = array('jpg', 'jpeg', 'png', 'gif', 'pdf');
-        if (in_array($fileactualext, $allowed)) {
-            if ($avatar['size'] < 1000000) {
-                $avatarNameNew = uniqid('', true) . '.' . $fileactualext;
-                $avatarDestination = '../uploads/' . $avatarNameNew;
-                move_uploaded_file($avatar['tmp_name'], $avatarDestination);
-            } else {
-                echo "Your file is too big";
-            }
-        } else {
-            echo "You cannot upload files of this type";
+        $avatar = "";
+        if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] == 0) {
+            $avatar = "uploads/" . uniqid() . "-" . $_FILES['avatar']['name'];
+            move_uploaded_file($_FILES['avatar']['tmp_name'], $avatar);
         }
+        
 
 
 
