@@ -3,19 +3,21 @@
   margin: 0;
   padding: 0;
 }
-
+a {
+  text-decoration: none;
+}
 .header {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 
-  background-color: #000;
+  background-color: rgb(0, 0, 0);
   color: goldenrod;
   padding: 20px;
   text-align: center;
   nav {
-    width: 90%;
+    width: 95%;
     display: flex;
 
     justify-content: space-between;
@@ -23,8 +25,39 @@
     a {
       color: goldenrod;
       text-decoration: none;
-      font-size: 1.2rem;
+      font-size: 1rem;
       padding: 10px;
+      &:hover {
+        border: 2px solid rgb(132, 127, 127);
+        border-radius: 24%;
+        color: goldenrod;
+        text-shadow: 2px 2px 2px rgb(132, 127, 127);
+      }
+    }
+    .authlinks {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      input {
+        border: none;
+        padding: 5px;
+        border-radius: 5px;
+        background-color: rgb(193, 189, 189);
+        color: rgb(4, 4, 4);
+        font-weight: bold;
+        &:hover {
+          background-color: slateblue;
+        }
+      }
+      button {
+        padding: 4px;
+        background-color: goldenrod;
+        color:black;
+        &:hover {
+          background-color: black;
+          color: goldenrod;
+        }
+      }
     }
   }
 }
@@ -64,25 +97,22 @@
     }
   }
 
-table{
-  width: 60%;
-  height: 500px;
-  padding: 10px;
-  border: 1px solid #000;
-thead{
-  background-color: rgb(150, 150, 150);
-  color: goldenrod;
-  font-weight: bold;
-  border: 2px solid #000;
-}
-  tr {
-    td {
-      border: 1px solid #000;
-      padding: 10px;
+  table {
+    width: 60%;
+    height: 500px;
+    padding: 10px;
+    border: 1px solid #000;
+    thead {
+      background-color: rgb(150, 150, 150);
+      color: goldenrod;
+      font-weight: bold;
+      border: 2px solid #000;
+    }
+    tr {
+      td {
+        border: 1px solid #000;
+        padding: 10px;
+      }
     }
   }
 }
-}
-
-
-

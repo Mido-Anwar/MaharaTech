@@ -1,4 +1,8 @@
-<?php include_once('../config/app.php') ?>
+<?php
+include_once('../config/app.php');
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +13,7 @@
 
 
     <title>user</title>
-    <link rel="stylesheet" href="<?php echo "../" . ASSET; ?>">
+    <link rel="stylesheet" href="<?php echo ASSET; ?>">
 
 </head>
 
@@ -29,30 +33,64 @@
             echo "0 results";
         }
         ?>
+
+        <?php
+        if (isset($_GET['search'])) {
+
+            $search = mysqli_escape_string($conn, $_GET['search']);
+            $sqls = "SELECT * FROM users WHERE name LIKE '%$search%' OR email LIKE '%$search%'";
+            $result = mysqli_query($conn, $sqls);
+        }
+
+
+        ?>
         <table>
             <thead>
                 <tr>
                     <th> ID</th>
                     <th>NAME</th>
                     <th>EMAIL</th>
+                    <th>Admin</th>
+                    <th>Avatar</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
-<tbody>
-     
+            <tbody>
+
                 <?php
 
                 while ($row = mysqli_fetch_assoc($result)) {
-                    echo "<tr>";
-                    echo "<td>" . $row['id'] . "</td>";
-                    echo "<td>" . $row['name'] . "</td>";
-                    echo "<td>" . $row['email'] . "</td>";
-                    echo "</tr>";
+                ?>
+                    <tr>
+                        <td><?php echo $row['id']; ?></td>
+                        <td><?php echo $row['name']; ?></td>
+                        <td><?php echo $row['email']; ?></td>
+                        <td><?= ($row['admin']) ? 'yes' : 'no' ?></td>
+                        <td><img src="<?= $row['avatar'] ?>" alt=""></td>
+                        <td><a href="<?php echo "edit.php?id=" . $row['id']; ?>">Edit</a></td>
+                        <td><a href="<?php echo "delete.php?id=" . $row['id']; ?>">Delete</a></td>
+                    </tr>
+
+                <?php
                 }
-                
                 ?>
 
-</tbody>
-           
+
+
+            </tbody>
+            <tfoot>
+                <tr>
+
+                    <td colspan="3">
+                        <?= mysqli_num_rows($result) ?> Users
+                    </td>
+                    <td colspan="4">
+                        <a href="../auth/adduser.php" class="btn btn-primary">Add User</a>
+                    </td>
+
+                </tr>
+            </tfoot>
 
         </table>
     </div>
@@ -61,3 +99,7 @@
 </body>
 
 </html>
+<?php
+mysqli_free_result($result);
+mysqli_close($conn);
+?>

@@ -4,18 +4,22 @@
   padding: 0;
 }
 
+a {
+  text-decoration: none;
+}
+
 .header {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  background-color: #000;
+  background-color: rgb(0, 0, 0);
   color: goldenrod;
   padding: 20px;
   text-align: center;
 }
 .header nav {
-  width: 90%;
+  width: 95%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -23,8 +27,39 @@
 .header nav a {
   color: goldenrod;
   text-decoration: none;
-  font-size: 1.2rem;
+  font-size: 1rem;
   padding: 10px;
+}
+.header nav a:hover {
+  border: 2px solid rgb(132, 127, 127);
+  border-radius: 24%;
+  color: goldenrod;
+  text-shadow: 2px 2px 2px rgb(132, 127, 127);
+}
+.header nav .authlinks {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.header nav .authlinks input {
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: rgb(193, 189, 189);
+  color: rgb(4, 4, 4);
+  font-weight: bold;
+}
+.header nav .authlinks input:hover {
+  background-color: slateblue;
+}
+.header nav .authlinks button {
+  padding: 4px;
+  background-color: goldenrod;
+  color: black;
+}
+.header nav .authlinks button:hover {
+  background-color: black;
+  color: goldenrod;
 }
 
 .container {
